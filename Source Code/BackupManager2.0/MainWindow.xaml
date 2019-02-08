@@ -1,0 +1,151 @@
+﻿<Window x:Name="Window" x:Class="BackupManager2._0.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:BackupManager2._0"
+        mc:Ignorable="d"
+        Title="Backup Manager 2.0" Height="261" Width="802" ResizeMode="NoResize" WindowStyle="None" Activated="Window_Activated" Deactivated="Window_Deactivated" AllowsTransparency="True">
+
+    <Window.Resources>
+        
+        <!--Standart Resouces-->
+        
+        <Thickness x:Key="StandartMargin" Top="5" Bottom="5" Left="5" Right="5"/>
+        <FontFamily x:Key="StandartFont">Lucida Console</FontFamily>
+
+        <!--Standart Styles-->
+
+        <Style TargetType="Label" x:Key="StandartLabelStyle">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="{StaticResource StandartFont}"/>
+            <Setter Property="Margin" Value="{StaticResource StandartMargin}"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="StandartButtonStyle">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="{StaticResource StandartFont}"/>
+            <Setter Property="Margin" Value="{StaticResource StandartMargin}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Overlay" Background="#FF1B212E">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Overlay" Property="Background" Value="#FF2F384B"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property = "Foreground" Value = "#FF007AD9"/>
+                                <Setter Property = "Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="StandartExitButtonStyle">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="{StaticResource StandartFont}"/>
+            <Setter Property="Margin" Value="{StaticResource StandartMargin}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Overlay" Background="Red">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property = "Foreground" Value = "#FFFF8484"/>
+                                <Setter Property = "Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="CheckBox" x:Key="StandartCheckBoxStyle">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="{StaticResource StandartFont}"/>
+            <Setter Property="Margin" Value="{StaticResource StandartMargin}"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Border x:Name="WindowBorder" BorderThickness="1" BorderBrush="#FF2F384B">
+        <Grid Loaded="Grid_Loaded" Background="#FF202225">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="480"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="DragBarGrid" Background="#FF202225" Grid.ColumnSpan="4" MouseDown="DragBarGrid_MouseDown" MouseMove="DragBarGrid_MouseMove" MouseUp="DragBarGrid_MouseUp">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Backup Manager 2.0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Style="{StaticResource StandartLabelStyle}"/>
+                <Button x:Name="ExitButton" Grid.Column="2" Content="X" HorizontalAlignment="Right" VerticalAlignment="Center" Width="30" Height="30" FontSize="20" Style="{StaticResource StandartExitButtonStyle}" Click="ExitButton_Click"/>
+            </Grid>
+        
+            <Grid Grid.Column="1" Grid.Row="1" Background="#FF2F3136">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="StartBackupButton" Grid.Column="0" Grid.Row="0" Content="Start Backup" Style="{StaticResource StandartButtonStyle}" Click="StartBackupButton_Click"/>
+                <Button x:Name="StopBackupButton" Grid.Column="1" Grid.Row="0" Content="Stop Backup" IsEnabled="False" Style="{StaticResource StandartButtonStyle}" Click="StopBackupButton_Click"/>
+
+
+                <Button x:Name="AddLocationButton" Grid.Column="0" Grid.Row="1" Content="Add Folder" Style="{StaticResource StandartButtonStyle}" Click="AddLocationButton_Click"/>
+
+                <CheckBox x:Name="RunAtStartupCheckBox" Grid.Column="0" Grid.Row="2" Content="Run at Startup" Style="{StaticResource StandartCheckBoxStyle}" Unchecked="RunAtStartupButton_Unchecked" Checked="RunAtStartupButton_Checked"/>
+                <CheckBox x:Name="CloseWhenDoneCheckBox" Grid.Column="1" Grid.Row="2" Content="Close when done" Style="{StaticResource StandartCheckBoxStyle}"/>
+                <CheckBox x:Name="StartWhenOpenCheckBox" Grid.Column="1" Grid.Row="3" Content="Start When Open" Style="{StaticResource StandartCheckBoxStyle}"/>
+                <CheckBox x:Name="DebugModeCheckBox" Grid.Column="0" Grid.Row="3" Content="Debug Mode" Style="{StaticResource StandartCheckBoxStyle}"/>
+
+                <TextBox x:Name="ParametersTextBox" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="/A-:S /A-:H /e /XO /NP /R:1 /W:1" VerticalAlignment="Stretch" Margin="{StaticResource StandartMargin}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+            </Grid>
+
+            <ScrollViewer Grid.Row="1" Grid.Column="2">
+                <StackPanel x:Name="FolderViewStackPanel" Background="#FF36393F"/>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>
