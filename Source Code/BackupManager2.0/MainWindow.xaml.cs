@@ -75,6 +75,10 @@ namespace BackupManager2._0
             SaveBackupSchedule();
             Application.Current.Shutdown();
         }
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
 
         void LoadExcludeFolders()
         {

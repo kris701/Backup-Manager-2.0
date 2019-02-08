@@ -76,6 +76,29 @@
             </Setter>
         </Style>
 
+        <Style TargetType="Button" x:Key="StandartMinimizeButtonStyle">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="{StaticResource StandartFont}"/>
+            <Setter Property="Margin" Value="{StaticResource StandartMargin}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Overlay" Background="#FF16168B">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property = "Foreground" Value = "#FFFF8484"/>
+                                <Setter Property = "Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="CheckBox" x:Key="StandartCheckBoxStyle">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -108,11 +131,17 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Backup Manager 2.0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Style="{StaticResource StandartLabelStyle}"/>
-                <Button x:Name="ExitButton" Grid.Column="2" Content="X" HorizontalAlignment="Right" VerticalAlignment="Center" Width="30" Height="30" FontSize="20" Style="{StaticResource StandartExitButtonStyle}" Click="ExitButton_Click"/>
+                <Image Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="logopng.ico"/>
+                <Label Grid.Column="2" Grid.ColumnSpan="2" Content="Backup Manager 2.0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Style="{StaticResource StandartLabelStyle}"/>
+                <Button x:Name="ExitButton" Grid.Column="4" Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="35" FontSize="20" Style="{StaticResource StandartExitButtonStyle}" Click="ExitButton_Click"/>
+                <Button x:Name="MinimizeButton" Grid.Column="3" Content="_" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="35" FontSize="20" Style="{StaticResource StandartMinimizeButtonStyle}" Click="MinimizeButton_Click"/>
+
             </Grid>
         
             <Grid Grid.Column="1" Grid.Row="1" Background="#FF2F3136">
