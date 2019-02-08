@@ -38,6 +38,8 @@ namespace BackupManager2._0
                 LoadBackupSchedule();
             if (System.IO.File.Exists(Directory.GetCurrentDirectory() + "\\ExcludeFolders.txt"))
                 LoadExcludeFolders();
+            else
+                System.IO.File.Create(Directory.GetCurrentDirectory() + "\\ExcludeFolders.txt");
             if ((bool)StartWhenOpenCheckBox.IsChecked)
                 await RunBackup();
         }
@@ -302,6 +304,7 @@ namespace BackupManager2._0
                 IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
                 shortcut.Description = "New shortcut for a Backup Manager 2.0";
                 shortcut.TargetPath = Directory.GetCurrentDirectory() + "\\BackupManager2.0.exe";
+                shortcut.WorkingDirectory = Directory.GetCurrentDirectory();
                 shortcut.Save();
             }
         }
