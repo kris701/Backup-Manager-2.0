@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:BackupManager2._0"
         mc:Ignorable="d"
-        Title="Backup Manager 2.0" Height="261" Width="802" ResizeMode="NoResize" WindowStyle="None" Activated="Window_Activated" Deactivated="Window_Deactivated" AllowsTransparency="True">
+        Title="Backup Manager 2.0" Height="261" Width="802" ResizeMode="NoResize" WindowStyle="None" Activated="Window_Activated" Deactivated="Window_Deactivated" AllowsTransparency="True" Icon="logopng.ico">
 
     <Window.Resources>
         
