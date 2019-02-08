@@ -9,4 +9,4 @@ This is an image of what the program looks like. The buttons **Start Backup** an
     \Application Data\
     C:\Users\Kristian\AppData\Local\Temp
     
-    And thats it! Hope you enjoy it!
+And thats it! Hope you enjoy it!
